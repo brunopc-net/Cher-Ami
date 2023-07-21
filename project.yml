@@ -1,0 +1,5 @@
+packages:
+  - name: cher-ami
+    actions:
+      - name: cher-ami
+        runtime: 'nodejs:default'

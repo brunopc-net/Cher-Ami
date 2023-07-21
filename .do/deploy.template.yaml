@@ -1,0 +1,14 @@
+alerts:
+- rule: DEPLOYMENT_FAILED
+- rule: DOMAIN_FAILED
+functions:
+- github:
+    branch: main
+    deploy_on_push: true
+    repo: brunopc-net/Cher-Ami
+  name: cher-ami
+  routes:
+  - path: /
+  source_dir: /
+name: cher-ami
+region: tor
