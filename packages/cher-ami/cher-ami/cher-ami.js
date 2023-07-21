@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-exports.main = (args) => {
-    axios({
+async function send_email(args) {
+    return await axios({
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         url: 'https://api.smtp2go.com/v3/email/send',
@@ -19,10 +19,18 @@ exports.main = (args) => {
             ]
         }
     }).then(function (response) {
-        // handle success
-        console.log(response.status);
+        return {
+            status: response.status,
+            statusText: response.statusText
+        }
     }).catch(function (error) {
         // handle error
-        console.log(error);
-    })
+        return {
+            status: error.response.status,
+            statusText: error.response.statusText,
+            details: error.response.data.data
+        }
+    });
 }
+
+exports.main = send_email;
