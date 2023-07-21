@@ -34,11 +34,21 @@ exports.main = (args) => {
         ]
         */
     }
+
+    console.log(API_KEY);
+    console.log(args.email);
+    console.log(args.message);
+
     axios({
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         url: 'https://api.smtp2go.com/v3/email/send',
         data: body
-    });
+    }).then(
+        function (response) {
+            console.log(response);
+        }
+    );
+
     return {"body": "email sent"}
 }
