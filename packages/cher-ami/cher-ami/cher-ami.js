@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 
 const API_KEY = process.env.API_KEY;
 const from = "Blog <blog@brunopc,net>";
