@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-function getEmailRequest(args){
-    return {
+exports.main = (args) => {
+    axios({
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         url: 'https://api.smtp2go.com/v3/email/send',
@@ -18,18 +18,11 @@ function getEmailRequest(args){
                 }
             ]
         }
-    }
-}
-
-exports.main = (args) => {
-    const req = getEmailRequest(args);
-    console.log("Request sent: "+JSON.stringify(req));
-
-    axios(req).then(
-        function (response) {
-            console.log(response);
-        }
-    );
-
-    return {"body": "email sent"}
+    }).then(function (response) {
+        // handle success
+        console.log(response.status);
+    }).catch(function (error) {
+        // handle error
+        console.log(error);
+    })
 }
